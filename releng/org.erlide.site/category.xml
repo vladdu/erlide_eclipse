@@ -3,10 +3,6 @@
    <feature id="org.erlide">
       <category name="erlide"/>
    </feature>
-   <feature id="org.erlide.wrangler">
-      <category name="extras"/>
-   </feature>
-   <feature url="features/com.abstratt.eclipsegraphviz.feature_2.2.201606.201701211537.jar" id="com.abstratt.eclipsegraphviz.feature" version="2.2.201606.201701211537"/>
    <feature url="features/org.erlide.kernel.feature_0.118.0.202505270947.jar" id="org.erlide.kernel.feature" version="0.118.0.202505270947">
       <category name="erlide"/>
    </feature>
@@ -17,6 +13,4 @@
    <bundle id="org.eclipse.xtend.lib.macro"/>
    <bundle id="org.eclipse.xtext.xbase.lib"/>
    <category-def name="erlide" label="erlide - Erlang development tools"/>
-   <category-def name="extras" label="erlide - optional plugins"/>
-   <repository-reference location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160221192158/repository/" enabled="true" />
 </site>

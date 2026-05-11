@@ -5,6 +5,6 @@ Bundle-SymbolicName: com.ericsson.otp.jinterface
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.14.1
 Bundle-Vendor: Erlide project
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Export-Package: com.ericsson.otp.erlang
 Automatic-Module-Name: com.ericsson.otp.jinterface

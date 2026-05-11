@@ -280,9 +280,6 @@
             <showDeprecation>true</showDeprecation>
             <useProjectSettings>true</useProjectSettings>
             <strictCompilerTarget>true</strictCompilerTarget>
-            <compilerArgs>
-              <arg>-21</arg>
-            </compilerArgs>
           </configuration>
           <dependencies>
             <dependency>

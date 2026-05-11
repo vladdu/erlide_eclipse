@@ -16,7 +16,7 @@
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jacoco-maven-version>0.8.12</jacoco-maven-version>
-    <eclipse-version>2026-03</eclipse-version><!-- 4.39 -->
+    <eclipse-version>2025-12</eclipse-version><!-- 4.38 -->
 
     <!-- Required properties for releasing -->
     <github-update-repo>git@github.com:erlide/erlide.github.io.git</github-update-repo>

@@ -10,7 +10,7 @@ location "https://download.eclipse.org/releases/2025-12/" {
   org.eclipse.sdk.ide lazy
   com.google.gson lazy
   com.google.guava lazy
-  org.apache.commons.io lazy
+  org.apache.commons.commons-io lazy
   org.apache.commons.lang3 lazy
   org.apache.commons.collections lazy
 }

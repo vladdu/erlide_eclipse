@@ -250,7 +250,7 @@
               <extraRequirements>
                 <requirement>
                   <type>eclipse-plugin</type>
-                  <id>org.apache.commons.io</id>
+                  <id>org.apache.commons.commons-io</id>
                   <versionRange>2.1</versionRange>
                 </requirement>
                 <requirement>

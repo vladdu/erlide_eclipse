@@ -85,8 +85,6 @@
     <module>tests/org.erlide.test_support.tests</module>
     <module>tests/org.erlide.util.tests</module>
 
-    <!--module>extras/wrangler</module-->
-
   </modules>
 
   <profiles>

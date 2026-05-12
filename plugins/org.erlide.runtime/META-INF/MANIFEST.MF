@@ -6,7 +6,7 @@ Bundle-Version: 0.63.0.qualifier
 Bundle-Vendor: erlide.org
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Require-Bundle: org.erlide.util,
- com.google.guava;bundle-version="[21.0.0,33.4.0)",
+ com.google.guava;bundle-version="[21.0.0,99.0.0)",
  org.eclipse.xtext.xbase.lib;bundle-version="2.19.0",
  javax.inject;bundle-version="1.0.0",
  com.ericsson.otp.jinterface;bundle-version="1.8.0",

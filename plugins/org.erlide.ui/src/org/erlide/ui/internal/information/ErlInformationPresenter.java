@@ -7,12 +7,13 @@
 
 package org.erlide.ui.internal.information;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
+import java.text.BreakIterator;
 import java.util.Iterator;
 
-import org.eclipse.jface.internal.text.link.contentassist.LineBreakingReader;
 import org.eclipse.jface.text.DefaultInformationControl;
 import org.eclipse.jface.text.Region;
 import org.eclipse.jface.text.TextPresentation;
@@ -276,5 +277,108 @@ public class ErlInformationPresenter
         buffer.delete(0, start);
         presentation.setResultWindow(new Region(start, buffer.length()));
         return buffer.toString();
+    }
+
+    /**
+     * Minimal replacement for the removed internal JFace
+     * {@code org.eclipse.jface.internal.text.link.contentassist.LineBreakingReader}.
+     * Reads input one logical line at a time and, if the line is wider than the
+     * configured pixel width when measured with the given {@link GC}, breaks it
+     * on word boundaries. A "formatted" line is a continuation produced by such
+     * a break (i.e. the second or later chunk of a wrapped source line).
+     */
+    private static final class LineBreakingReader {
+        private final BufferedReader fReader;
+        private final GC fGC;
+        private final int fMaxWidth;
+        private String fLine;
+        private int fOffset;
+        private BreakIterator fLineBreakIterator;
+        private boolean fBreakWords;
+        private boolean fIsFormattedLine;
+
+        LineBreakingReader(final Reader reader, final GC gc, final int maxLineWidth) {
+            fReader = new BufferedReader(reader);
+            fGC = gc;
+            fMaxWidth = maxLineWidth;
+            fOffset = 0;
+            fLine = null;
+            fLineBreakIterator = BreakIterator.getLineInstance();
+            fBreakWords = true;
+        }
+
+        boolean isFormattedLine() {
+            return fIsFormattedLine;
+        }
+
+        String readLine() throws IOException {
+            if (fLine == null) {
+                final String line = fReader.readLine();
+                if (line == null) {
+                    return null;
+                }
+                if (fGC.textExtent(line).x < fMaxWidth) {
+                    fIsFormattedLine = false;
+                    return line;
+                }
+                fLine = line;
+                fLineBreakIterator.setText(line);
+                fOffset = 0;
+            }
+            final int breakOffset = findNextBreakOffset(fOffset);
+            String res;
+            if (breakOffset != BreakIterator.DONE) {
+                res = fLine.substring(fOffset, breakOffset);
+                fOffset = breakOffset;
+                fIsFormattedLine = true;
+            } else {
+                res = fLine.substring(fOffset);
+                fLine = null;
+                fIsFormattedLine = false;
+            }
+            return res;
+        }
+
+        private int findNextBreakOffset(final int currOffset) {
+            int currWidth = 0;
+            int nextOffset = fLineBreakIterator.following(currOffset);
+            while (nextOffset != BreakIterator.DONE) {
+                final String word = fLine.substring(currOffset, nextOffset);
+                final int wordWidth = fGC.textExtent(word).x;
+                final int nextWidth = wordWidth + currWidth;
+                if (nextWidth > fMaxWidth) {
+                    if (currWidth > 0) {
+                        return findWordBegin(currOffset, nextOffset);
+                    }
+                    if (fBreakWords) {
+                        return findCharBreak(currOffset, wordWidth);
+                    }
+                    return nextOffset;
+                }
+                currWidth = nextWidth;
+                nextOffset = fLineBreakIterator.next();
+            }
+            return BreakIterator.DONE;
+        }
+
+        private int findWordBegin(final int start, final int end) {
+            int i = end;
+            while (i > start && Character.isWhitespace(fLine.charAt(i - 1))) {
+                i--;
+            }
+            return i == start ? end : i;
+        }
+
+        private int findCharBreak(final int start, final int wordWidth) {
+            // Fallback: break at a character boundary inside an oversized word.
+            int width = 0;
+            for (int i = start; i < fLine.length(); i++) {
+                width += fGC.textExtent(String.valueOf(fLine.charAt(i))).x;
+                if (width > fMaxWidth) {
+                    return i == start ? start + 1 : i;
+                }
+            }
+            return fLine.length();
+        }
     }
 }

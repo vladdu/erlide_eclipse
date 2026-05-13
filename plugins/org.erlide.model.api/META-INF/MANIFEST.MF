@@ -4,7 +4,7 @@ Bundle-Name: erlide engine api
 Bundle-SymbolicName: org.erlide.model.api;singleton:=true
 Bundle-Version: 0.63.0.qualifier
 Bundle-Vendor: erlide.org
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Export-Package: org.erlide.engine,
  org.erlide.engine.model,
  org.erlide.engine.model.builder,
@@ -26,7 +26,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.7.0",
  org.eclipse.core.filesystem;bundle-version="1.3.0",
  org.erlide.runtime,
  org.erlide.util,
- com.google.guava;bundle-version="[21.0.0,33.4.0)",
+ com.google.guava;bundle-version="[21.0.0,99.0.0)",
  javax.inject;bundle-version="1.0.0",
  org.eclipse.xtext.xbase.lib;bundle-version="2.19.0",
  com.ericsson.otp.jinterface;bundle-version="1.8.0"

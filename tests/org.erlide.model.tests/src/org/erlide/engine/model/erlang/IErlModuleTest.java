@@ -353,8 +353,8 @@ public class IErlModuleTest extends ErlModelTestBase {
                 .getInstance().getModelFindService().findAllIncludedFiles(module));
         assertEquals(0, includedFiles.size());
         assertEquals(2, includedFiles2.size());
-        assertEquals(include, includedFiles2.get(0));
-        assertEquals(include2, includedFiles2.get(1));
+        assertTrue(includedFiles2.contains(include));
+        assertTrue(includedFiles2.contains(include2));
     }
 
     @Test

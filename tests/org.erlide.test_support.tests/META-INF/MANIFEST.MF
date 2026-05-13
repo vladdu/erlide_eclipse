@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.erlide.test_support.tests
 Bundle-Version: 0.63.0.qualifier
 Bundle-Vendor: erlide.org
 Fragment-Host: org.erlide.test_support
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Require-Bundle: org.junit
 Export-Package: org.erlide.test_support
 Import-Package: org.eclipse.jdt.annotation;resolution:=optional

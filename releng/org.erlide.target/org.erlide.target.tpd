@@ -2,26 +2,24 @@ target "erlide target"
 
 with source configurePhase requirements
 
-environment JavaSE-1.8
+environment JavaSE-21
 
-location "http://download.eclipse.org/eclipse/updates/4.10/" {
+location "https://download.eclipse.org/releases/2025-12/" {
   org.eclipse.e4.rcp.feature.group lazy
   org.eclipse.jdt.annotation lazy
   org.eclipse.sdk.ide lazy
-}
-location "https://erlide.org/update/libs" {
-  com.abstratt.eclipsegraphviz.feature.feature.group lazy //[2.2.0, 3.0.0)
+  com.google.gson lazy
+  com.google.guava lazy
+  org.apache.commons.commons-io lazy
+  org.apache.commons.lang3 lazy
+  org.apache.commons.collections lazy
 }
 
-location "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.19.0/"{
+location "https://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"{
   org.eclipse.xtext.xbase.lib lazy
 }
 
+
 location "https://erlide.org/update/kernel/0.118.0" {
   org.erlide.kernel.feature.feature.group lazy
-}
-
-location "http://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository"{
-  com.google.gson [2.7.0, 3.0.0)
-  com.google.guava [27.0.0, 28.0.0)
 }
